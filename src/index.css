@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — soft romantic palette & typography
+------------------------------------------------------------------- */
+@theme {
+  --color-blush: #fff5f7; /* page background */
+  --color-petal: #fce4ec; /* pastel pink */
+  --color-candy: #f8bbd0; /* soft pink */
+  --color-rosy: #efa3b5; /* rose pink */
+  --color-berry: #b85c78; /* dark rose */
+  --color-berry-deep: #9a4561; /* deeper rose for accessible contrast */
+  --color-cocoa: #5d414a; /* text */
+  --color-cream: #fffcf8; /* paper */
+  --color-peach: #fff0e8; /* extra pastel for cards */
+  --color-lilac: #f5ecf8; /* extra pastel for cards */
+
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-bob: bob 5s ease-in-out infinite;
+  --animate-twinkle: twinkle 3.2s ease-in-out infinite;
+  --animate-heartbeat: heartbeat 1.8s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-14px) rotate(6deg);
+    }
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes heartbeat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    15% {
+      transform: scale(1.18);
+    }
+    30% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.12);
+    }
+  }
+}
+
+/* Soft dotted "scrapbook paper" texture */
+@utility bg-dots {
+  background-image: radial-gradient(rgb(239 163 181 / 0.22) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-blush bg-dots font-sans text-cocoa antialiased;
+  }
+
+  ::selection {
+    @apply bg-candy text-cocoa;
+  }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
